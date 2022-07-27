@@ -38,11 +38,11 @@ const DatePicker = ({
   const calendarContainerElement = useRef(null);
   const inputElement = useRef(null);
   const shouldPreventToggle = useRef(false);
-  const [isCalendarOpen, setCalendarVisiblity] = useState(false);
+  const [isCalendarOpen, setCalendarVisibility] = useState(false);
 
   useEffect(() => {
     const handleBlur = () => {
-      setCalendarVisiblity(false);
+      setCalendarVisibility(false);
     };
     window.addEventListener('blur', handleBlur, false);
     return () => {
@@ -69,12 +69,12 @@ const DatePicker = ({
     } else if (isInnerElementFocused && e.relatedTarget) {
       e.relatedTarget.focus();
     } else {
-      setCalendarVisiblity(false);
+      setCalendarVisibility(false);
     }
   };
 
   const openCalendar = () => {
-    if (!shouldPreventToggle.current) setCalendarVisiblity(true);
+    if (!shouldPreventToggle.current) setCalendarVisibility(true);
   };
 
   // Keep the calendar in the screen bounds if input is near the window edges
@@ -111,17 +111,17 @@ const DatePicker = ({
   const handleCalendarChange = newValue => {
     const valueType = getValueType(value);
     onChange(newValue);
-    if (valueType === TYPE_SINGLE_DATE) setCalendarVisiblity(false);
-    else if (valueType === TYPE_RANGE && newValue.from && newValue.to) setCalendarVisiblity(false);
+    if (valueType === TYPE_SINGLE_DATE) setCalendarVisibility(false);
+    else if (valueType === TYPE_RANGE && newValue.from && newValue.to) setCalendarVisibility(false);
   };
 
   const handleKeyUp = ({ key }) => {
     switch (key) {
       case 'Enter':
-        setCalendarVisiblity(true);
+        setCalendarVisibility(true);
         break;
       case 'Escape':
-        setCalendarVisiblity(false);
+        setCalendarVisibility(false);
         shouldPreventToggle.current = true;
         break;
     }

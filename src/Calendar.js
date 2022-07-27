@@ -38,13 +38,14 @@ const Calendar = ({
   });
 
   useEffect(() => {
+    const calendarEl = calendarElement.current;
     const handleKeyUp = ({ key }) => {
       /* istanbul ignore else */
-      if (key === 'Tab') calendarElement.current.classList.remove('-noFocusOutline');
+      if (key === 'Tab') calendarEl.classList.remove('-noFocusOutline');
     };
-    calendarElement.current.addEventListener('keyup', handleKeyUp, false);
+    calendarEl.addEventListener('keyup', handleKeyUp, false);
     return () => {
-      calendarElement.current.removeEventListener('keyup', handleKeyUp, false);
+      calendarEl.removeEventListener('keyup', handleKeyUp, false);
     };
   });
 
